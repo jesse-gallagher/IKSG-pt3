@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:inputTextarea id="Body" value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.fieldName + '}'}" styleClass="wysiwygify">
+		<xp:this.loaded><![CDATA[${javascript:
+			!view.isReadonly() && !facesContext.getApplication().getVariableResolver().resolveVariable(facesContext, compositeData.sourceName).isReadOnly(compositeData.fieldName)
+		}]]></xp:this.loaded>
+	</xp:inputTextarea>
+	<xp:text value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.fieldName + '}'}" escape="false">
+		<xp:this.loaded><![CDATA[${javascript:
+			view.isReadonly() || facesContext.getApplication().getVariableResolver().resolveVariable(facesContext, compositeData.sourceName).isReadOnly(compositeData.fieldName)
+		}]]></xp:this.loaded>
+	</xp:text>
+</xp:view>

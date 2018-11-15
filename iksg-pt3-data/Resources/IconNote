@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note default='true' class='icon' xmlns='http://www.lotus.com/dxl' version='9.0'
+ maintenanceversion='1.1' replicaid='85257C900075D281'>
+<noteinfo noteid='11e' unid='16A420A05D2BDAB585257C900075D28C' sequence='9'>
+<created><datetime>20140303T162656,12-05</datetime></created>
+<modified><datetime dst='true'>20140606T141817,91-04</datetime></modified>
+<revised><datetime dst='true'>20140606T141817,90-04</datetime></revised>
+<lastaccessed><datetime dst='true'>20140606T141817,90-04</datetime></lastaccessed>
+<addedtofile><datetime>20140303T162656,15-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<item name='IconBitmap' summary='true'>
+<rawitemdata type='6'>
+AiAgAQAA///////wD///gAH//gAAf/wAAD/4AAAf8AAAD+AAAAfgAAAHwAAAA8AAAAPAAAADgAAA
+AYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAHAAAADwAAAA8AAAAPgAAAH4AAAB/AAAA/4AAAf
+/AAAP/4AAH//gAH///AP//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiAAAAAAAAAAAAAAI
+jPZmZm/IgAAAAAAAAAAIjGZmZmZmZsiAAAAAAAAAjGZmZmZmZmZmyAAAAAAACMZmZmZmZmZmZmyA
+AAAAAIxmZmZmZmZmZmZmyAAAAAjGZmZmZmZmZmZmZmyAAAAIZmbyL2byL2byL2ZmgAAAjGZmIiJm
+IiJmIiJmZsgAAIZmZiIiZiIiZiIiZmZoAADGZmYiImYiImYiImZmbAAI9mZmIiJmIiJmIiJmZm+A
+CGZmZiIiZiIiZiIiZmZmgAhmZmYiImYiImYiImZmZoAIZmZmIiJmIiJmIiJmZmaACGZvIiIiZiIi
+ZiIiIvZmgAhmYiIiImYiImYiIiImZoAIZm8iIi9m8i9m8iIi9maACPZmZmZmZmZmZmZmZmZvgADG
+ZmbyL2byL2byL2ZmbAAAj2ZmIiJmIiJmIiJmZvgAAIxmZiIiZiIiZiIiZmbIAAAI9mbyL2byL2by
+L2ZvgAAACMZmZmZmZmZmZmZmbIAAAACMZmZmZmZmZmZmZsgAAAAACMZmZmZmZmZmZmyAAAAAAACM
+9mZmZmZmZm/IAAAAAAAACIz2ZmZmZm/IgAAAAAAAAAAIiMZmZmyIgAAAAAAAAAAAAACIiIiIAAAA
+AAAAUEECICABAAD/////+A4DgA==
+</rawitemdata></item>
+<item name='$DefaultXPage'><text>Lists.xsp</text></item>
+<item name='$DBTheme'><text>Lists.theme</text></item>
+<item name='$DefaultFrameset'><text>Outer Frame</text></item>
+<item name='$PIRCRefreshModTime'><datetime dst='true'>20130925T170237,19-04</datetime></item>
+<item name='$TemplateModTime'><datetime dst='true'>20130925T170143,04-04</datetime></item>
+<item name='$TemplateServerName'><text>CN=Jesse Gallagher/O=Frost</text></item>
+<item name='$TemplateFileName'><text>c:\Program Files (x86)\IBM\Notes\Data\pt3-data-20130925.ntf</text></item>
+<item name='$TITLE'><text>Milo data (Development)
+</text></item>
+<item name='$LaunchXPageRunOnServer'><text>0</text></item>
+<item name='$FlagsNoRefresh'><text/></item>
+<item name='$AllowPost8HTML'><text>1</text></item>
+<item name='$AllowRESTDbAPI'><number>2</number></item>
+<item name='$Daos'><text>1</text></item>
+<item name='$Flags'><text>Jz47qNZFK</text></item></note>
+

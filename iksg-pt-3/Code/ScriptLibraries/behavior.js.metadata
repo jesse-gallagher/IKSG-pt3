@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="filter" maintenanceversion="1.1" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="117a" sequence="210" unid="C014D97A7A6B95EA85257BBE0055297B">
+<created><datetime dst="true">20130805T113011,79-04</datetime></created>
+<modified><datetime dst="true">20140629T174604,56-04</datetime></modified>
+<revised><datetime dst="true">20140629T174604,55-04</datetime></revised>
+<lastaccessed><datetime dst="true">20140629T174604,55-04</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082309,05-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$TITLE" sign="true"><text>behavior.js</text></item>
+<item name="$Flags"><text>h534Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+</note>

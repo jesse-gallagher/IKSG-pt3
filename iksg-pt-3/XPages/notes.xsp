@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]"/>
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]"/>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	
+	<xc:layout navigationPath="/Notes/All" pageTitle="Notes">
+		<xp:this.facets>
+			<xc:actionBar xp:key="ActionBar" loaded="${not view.readonly}">
+				<xc:button_newNote refreshId="viewContainer"/>
+			</xc:actionBar>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home"/>
+					<xe:basicLeafNode label="Notes"/>
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:searchView xp:key="SearchBar" refreshId="viewContainer" rendered="#{not view.readonly}"/>
+		</xp:this.facets>
+
+		<xp:div id="viewContainer">
+			<xc:list_notes value="#{controller.notes}" />
+		</xp:div>
+	</xc:layout>
+</xp:view>

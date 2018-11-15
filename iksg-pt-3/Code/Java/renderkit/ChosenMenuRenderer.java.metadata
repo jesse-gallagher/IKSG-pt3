@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="15a2" sequence="6" unid="31BE0221AA91E7CC85257CBE006F7CF7">
+<created><datetime dst="true">20140418T161744,87-04</datetime></created>
+<modified><datetime dst="true">20141002T102052,39-04</datetime></modified>
+<revised><datetime dst="true">20141002T102052,38-04</datetime></revised>
+<lastaccessed><datetime dst="true">20141002T102052,38-04</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20140418T161744,87-04</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>renderkit/ChosenMenuRenderer.java</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>renderkit/ChosenMenuRenderer.java</text></item>
+
+
+</note>

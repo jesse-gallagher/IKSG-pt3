@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}" xmlns:ff="http://frostillic.us/framework">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="oneTimeCharge" managerName="OneTimeCharges" key="${empty param.id ? 'new' : param.id}"/>
+	</xp:this.data>
+
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/oneTimeCharges.xsp" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/OneTimeCharges/OneTimeCharge" pageTitle="One-Time Charge" doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode page="oneTimeCharges" label="One-Time Charges" />
+					<xe:basicLeafNode label="#{empty oneTimeCharge.Summary ? 'One-Time Charge' : oneTimeCharge.Summary}" />
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" loaded="${not controller.readonly}">
+				<xc:buttons_modelCommon/>
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn tabletCols="8">
+				<xe:widgetContainer titleBarText="Charge" styleClass="widget-color-green2">
+					<xe:formTable>
+						<xe:formRow label="Summary">
+							<xp:inputText id="Summary" value="#{oneTimeCharge.Summary}" required="true" />
+						</xe:formRow>
+						<xe:formRow label="Date">
+							<xc:inputDate sourceName="oneTimeCharge" fieldName="Date"/>
+						</xe:formRow>
+						<xe:formRow label="Count">
+							<xp:inputText id="Count" value="#{oneTimeCharge.Count}" defaultValue="1">
+								<xp:this.converter>
+									<xp:convertNumber type="number" integerOnly="true" />
+								</xp:this.converter>
+							</xp:inputText>
+						</xe:formRow>
+						<xe:formRow label="Amount">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="fa fa-usd"/>
+								</span>
+<!--								<xe:djCurrencyTextBox id="Amount" value="#{oneTimeCharge.Amount}">-->
+<!--									<xe:this.constraints>-->
+<!--										<xe:djNumberConstraints currency="USD" symbol="$" type="currency"></xe:djNumberConstraints>-->
+<!--									</xe:this.constraints>-->
+<!--								</xe:djCurrencyTextBox>-->
+								<xp:inputText id="Amount" value="#{oneTimeCharge.Amount}" required="true">
+									<xp:this.converter>
+										<xp:convertNumber type="currency" currencySymbol="$" currencyCode="USD" />
+									</xp:this.converter>
+								</xp:inputText>
+							</div>
+						</xe:formRow>
+						<xe:formRow label="Files">
+							<xc:inputFile sourceName="oneTimeCharge" fieldName="Files"/>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+			<xc:layoutColumn tabletCols="4">
+				<xe:widgetContainer titleBarText="Client Info" styleClass="widget-color-red3">
+					<xe:formTable labelPosition="above" id="projectRefresher">
+						<xe:formRow label="Client">
+							<xp:comboBox id="ClientID" value="#{oneTimeCharge.ClientID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="${Clients.dropdown_list}" />
+								
+								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="projectRefresher"/>
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow label="Project" rendered="#{not empty oneTimeCharge.ClientID}">
+							<xp:comboBox id="ProjectID" value="#{oneTimeCharge.ProjectID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="#{oneTimeCharge.client.projectDropDownValues}" />
+							</xp:comboBox>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+
+		<xc:layoutRow>
+			<xc:layoutColumn>
+				<xc:inputHTML sourceName="oneTimeCharge" fieldName="Body"/>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+	</xc:layout>
+</xp:view>

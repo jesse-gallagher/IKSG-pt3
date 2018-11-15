@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:div>
+		<xp:this.styleClass><![CDATA[#{javascript:
+			var classes = []
+			if(compositeData.styleClass) {
+				classes.push(compositeData.styleClass)
+			}
+			var addedCols = false
+			if(compositeData.phoneCols) {
+				addedCols = true
+				classes.push("col-xs-" + compositeData.phoneCols.toFixed(0))
+			}
+			if(compositeData.tabletCols) {
+				addedCols = true
+				classes.push("col-sm-" + compositeData.tabletCols.toFixed(0))
+			}
+			if(compositeData.desktopCols) {
+				addedCols = true
+				classes.push("col-md-" + compositeData.desktopCols.toFixed(0))
+			}
+			if(compositeData.largeCols) {
+				addedCols = true
+				classes.push("col-lg-" + compositeData.largeCols.toFixed(0))
+			}
+			if(!addedCols) {
+				classes.push("col-xs-12")
+			}
+			return classes.join(" ")
+		}]]></xp:this.styleClass>
+		<xp:callback/>
+	</xp:div>
+</xp:view>

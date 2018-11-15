@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:viewPanel id="taskList" value="#{compositeData.value}" var="update">
+		<xp:this.facets>
+			<xp:pager id="pager2" layout="Previous Group Next" partialRefresh="true" xp:key="footerPager">
+				<xp:this.rendered><![CDATA[#{javascript:
+					getComponent("taskList").getRowCount() > getComponent("taskList").getRows()
+				}]]></xp:this.rendered>
+			</xp:pager>
+		</xp:this.facets>
+	
+		<xp:viewColumn columnName="Released">
+			<xp:viewColumnHeader value="Released"/>
+			<xp:this.converter><xp:convertDateTime type="date"/></xp:this.converter>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="Version" displayAs="link" pageUrl="/appUpdate.xsp?id=#{update.id}">
+			<xp:viewColumnHeader value="Version"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="ReleaseStage">
+			<xp:viewColumnHeader value="Release Stage"/>
+		</xp:viewColumn>
+	</xp:viewPanel>
+</xp:view>

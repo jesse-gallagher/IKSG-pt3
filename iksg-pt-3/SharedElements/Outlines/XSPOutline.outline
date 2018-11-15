@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='filter' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='85257BBF004BB372'>
+<noteinfo noteid='86e' unid='B3BB96BC46E5566685257BBE0055228E' sequence='7'>
+<created><datetime dst='true'>20130805T112954,06-04</datetime></created>
+<modified><datetime>20140307T082252,27-05</datetime></modified>
+<revised><datetime>20140307T082252,26-05</datetime></revised>
+<lastaccessed><datetime>20140307T082252,26-05</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082307,63-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name='$SiteMapList' sign='true'>
+<rawitemdata type='1a'>
+AQYBAAEABABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAEAEgAAAAAAAAAZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+/P8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAEAAAAZwAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAA/P8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAA
+aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/f8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAEgAAAAEAAAAaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/f8AAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><text>XSPOutline</text></item>
+<item name='$Flags'><text>m</text></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item></note>
+

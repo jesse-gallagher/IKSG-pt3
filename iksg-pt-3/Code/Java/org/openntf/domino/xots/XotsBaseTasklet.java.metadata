@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="19be" sequence="3" unid="27F14FF47896D39985257DB5006F59C7">
+<created><datetime>20141221T151614,79-05</datetime></created>
+<modified><datetime>20141221T151615,29-05</datetime></modified>
+<revised><datetime>20141221T151615,28-05</datetime></revised>
+<lastaccessed><datetime>20141221T151615,28-05</datetime></lastaccessed>
+<addedtofile><datetime>20141221T151614,79-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>org/openntf/domino/xots/XotsBaseTasklet.java</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>org/openntf/domino/xots/XotsBaseTasklet.java</text></item></note>

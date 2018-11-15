@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}" readonly="true" xmlns:ff="http://frostillic.us/framework">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="update" managerName="AppUpdates" key="${empty param.id ? 'new' : param.id}"/>
+	</xp:this.data>
+
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/appUpdates.xsp" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/AppUpdates/AppUpdate" pageTitle="App Update"
+		doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode page="appUpdates" label="App Updates" />
+					<xe:basicLeafNode label="App Update" />
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" loaded="${not view.readonly}">
+				<xp:button id="button1" value="Save" styleClass="btn btn-primary btn-sm">
+					<xp:eventHandler event="onclick" submit="true" action="#{controller.save}" />
+				</xp:button>
+				&#160;
+				<xp:button id="button2" value="Delete" styleClass="btn btn-danger btn-sm">
+					<xp:eventHandler event="onclick" submit="true" action="#{controller.delete}" disableValidators="true">
+						<xp:this.script><![CDATA[
+							return XSP.confirm("Delete this note?")
+						]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn>
+				<xe:widgetContainer titleBarText="Update" styleClass="widget-color-grey">
+					<xe:formTable>
+						<xe:formRow label="Version">
+							<xp:inputText id="Version" value="#{update.Version}" required="true" />
+						</xe:formRow>
+						<xe:formRow label="Release Stage">
+							<xp:inputText value="#{update.ReleaseStage}" />
+						</xe:formRow>
+						<xe:formRow label="Released">
+							<xp:inputText id="Released" value="#{update.Released}"/>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+		
+		<xc:layoutRow>
+			<xc:layoutColumn>
+				<xc:inputHTML sourceName="update" fieldName="Body"/>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+	</xc:layout>
+</xp:view>

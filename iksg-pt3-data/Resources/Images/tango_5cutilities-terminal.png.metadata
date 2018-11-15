@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="85257C900075D281" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1be" sequence="4" unid="16A1D64082384CB785257C900075D4A0">
+<created><datetime>20140303T162701,44-05</datetime></created>
+<modified><datetime>20140307T082228,12-05</datetime></modified>
+<revised><datetime>20140307T082228,11-05</datetime></revised>
+<lastaccessed><datetime>20140307T082228,11-05</datetime></lastaccessed>
+<addedtofile><datetime>20140303T162701,49-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34CiQP</text></item>
+<item name="$FlagsExt"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20051018T175235,00-04</datetime></item>
+<item name="$ImageNames" sign="true"><text>utilities-terminal.png</text></item>
+<item name="$TITLE" sign="true"><textlist><text>tango\utilities-terminal.png</text><text>tango\utilities-terminal.gif</text></textlist></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+</note>

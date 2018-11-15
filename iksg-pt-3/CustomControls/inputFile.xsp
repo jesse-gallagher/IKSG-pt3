@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:fileDownload value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.fieldName + '}'}"
+		id="fileDownload" rendered="#{javascript:this.getRowCount() != 0}"
+		displayType="false" displayCreated="false" displayLastModified="true"
+		allowDelete="true"/>
+	<xp:fileUpload value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.fieldName + '}'}">
+		<xp:this.loaded><![CDATA[${javascript:
+			!view.isReadonly() && !facesContext.getApplication().getVariableResolver().resolveVariable(facesContext, compositeData.sourceName).isReadOnly(compositeData.fieldName)
+		}]]></xp:this.loaded>
+	</xp:fileUpload>
+	<xp:button id="attach" value="Attach" styleClass="btn btn-xs btn-grey">
+		<xp:this.loaded><![CDATA[${javascript:
+			!view.isReadonly() && !facesContext.getApplication().getVariableResolver().resolveVariable(facesContext, compositeData.sourceName).isReadOnly(compositeData.fieldName)
+		}]]></xp:this.loaded>
+		<xp:eventHandler event="onclick" submit="true" disableValidators="true"/>
+		<i class="icon-cloud-upload"/>
+	</xp:button>
+</xp:view>

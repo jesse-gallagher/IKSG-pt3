@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:ff="http://frostillic.us/framework"
+	beforePageLoad="#{controller.beforePageLoad}" afterPageLoad="#{controller.afterPageLoad}" readonly="#{not request.new and not (userInfo.staff or userInfo.admin)}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Client]" />
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Client]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="request" managerName="Requests" key="${empty param.id ? 'new' : param.id}"/>
+	</xp:this.data>
+
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/requests.xsp" />
+		<xp:navigationRule outcome="converted-to-task" viewId="/task.xsp?id=#{request.id}" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/Requests/Request" pageTitle="Request" doubleActionBar="true" emailSubject="${controller.emailSubject}" emailSendTo="${controller.emailSendTo}">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode page="requests" label="Requests" />
+					<xe:repeatTreeNode value="#{controller.lineage}" var="parentTask">
+						<xe:this.children>
+							<xe:pageTreeNode page="task" label="Task" queryString="id=#{parentTask.id}" />
+						</xe:this.children>
+					</xe:repeatTreeNode>
+					<xe:basicLeafNode label="Request" />
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" loaded="${not controller.readonly}">
+				<xc:buttons_modelCommon/>
+				&#160;
+				<xp:button id="button3" value="Convert To Task" loaded="${userInfo.staff or userInfo.admin}" rendered="#{not request.new}" styleClass="btn btn-sm">
+					<xp:eventHandler event="onclick" submit="true" action="#{controller.convertToTask}">
+						<xp:this.script><![CDATA[
+							return XSP.confirm("Convert this request to a task?")
+						]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn tabletCols="8">
+				<xe:widgetContainer titleBarText="Summary" styleClass="widget-color-orange">
+					<xe:formTable>
+						<xe:formRow label="Summary">
+							<xp:inputText id="Name" value="#{request.Summary}" />
+						</xe:formRow>
+						<xe:formRow label="Time Frame">
+							<xp:comboBox id="TimeFrame" value="#{request.TimeFrame}">
+								<xp:selectItem itemLabel="Normal" />
+								<xp:selectItem itemLabel="Rush" />
+								<xp:selectItem itemLabel="Urgent" />
+								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="projectRefresher" disableValidators="true" />
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow label="Files">
+							<xc:inputFile sourceName="request" fieldName="Files"/>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+			<xc:layoutColumn tabletCols="4">
+				<xe:widgetContainer titleBarText="Client Info" styleClass="widget-color-red3">
+					<xe:formTable labelPosition="above" id="projectRefresher">
+						<xe:formRow label="Requester" loaded="${userInfo.staff or userInfo.admin}">
+							<xp:inputText value="#{request.requester}" />
+						</xe:formRow>
+						<xe:formRow label="Client" loaded="${userInfo.staff or userInfo.admin}">
+							<xp:comboBox id="ClientID" value="#{request.ClientID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="${Clients.dropdown_list}" />
+
+								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="projectRefresher" />
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow label="Project" rendered="#{not empty request.ClientID}">
+							<xp:comboBox id="ProjectID" value="#{request.ProjectID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="#{request.client.projectDropDownValues}" />
+							</xp:comboBox>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+		
+		<xc:layoutRow>
+			<xc:layoutColumn>
+				<xc:inputHTML sourceName="request" fieldName="Body"/>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+	</xc:layout>
+</xp:view>

@@ -1,0 +1,240 @@
+<theme extends="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="platform:/plugin/com.ibm.designer.domino.stylekits/schema/stylekit.xsd" >
+	<resources>
+		<metaData name="viewport" content="width=device-width, initial-scale=1.0" />
+		<metaData name="apple-mobile-web-app-capable" content="yes" />
+		<metaData name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+		<!-- Basic styles -->
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/bootstrap.min.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/bootstrap-responsive.min.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/font-awesome.min.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/font-awesome-ie7.min.css" rendered="#{javascript:context.getUserAgent().isIE(7,7)}" />
+		
+		<!-- Fonts -->
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-fonts.css" />
+		
+		<!-- Ace styles -->
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace.min.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-responsive.min.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-skins.min.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-ie.min.css" rendered="#{javascript:context.getUserAgent().isIE(6,8)}"/>
+		
+		<!-- Plugin styles -->
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/chosen.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/datepicker.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/bootstrap-timepicker.css" />
+		<styleSheet href="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/fullcalendar.css" />
+
+		<!-- Basic scripts -->
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery-2.0.3.min.js" clientSide="true" rendered="#{javascript:!context.getUserAgent().isIE(6,9)}"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery-1.10.2.min.js" clientSide="true" rendered="#{javascript:context.getUserAgent().isIE(6,9)}"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/bootstrap.min.js" clientSide="true" />
+		
+		<!-- Plugin scripts -->
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/excanvas.min.js" clientSide="true" rendered="#{javascript:context.getUserAgent().isIE(6,8)}"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery-ui-1.10.3.custom.min.js" clientSide="true"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery.ui.touch-punch.min.js" clientSide="true"/>
+<!--		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery.slimscroll.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery.easy-pie-chart.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery.sparkline.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/flot/jquery.flot.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/flot/jquery.flot.pie.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/flot/jquery.flot.resize.min.js" clientSide="true"/>-->
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/chosen.jquery.min.js" clientSide="true"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/date-time/bootstrap-datepicker.min.js" clientSide="true"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/date-time/bootstrap-timepicker.min.js" clientSide="true"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/bootstrap-wysiwyg.min.js" clientSide="true"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/fullcalendar.min.js" clientSide="true"/>
+		
+		<!-- Ace scripts -->
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/ace-elements.min.js" clientSide="true"/>
+		<script src="/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/ace.min.js" clientSide="true"/>
+	</resources>
+
+	<control>
+		<name>Button.Command</name>
+		<property>
+			<name>styleClass</name>
+			<value>btn</value>
+		</property>
+	</control>
+	<control>
+		<name>Button.Submit</name>
+		<property>
+			<name>styleClass</name>
+			<value>btn btn-primary</value>
+		</property>
+	</control>
+	<control>
+		<name>Button.Cancel</name>
+		<property>
+			<name>styleClass</name>
+			<value>btn</value>
+		</property>
+	</control>
+
+	<control>
+		<name>InputField.EditBox</name>
+		<property>
+			<name>styleClass</name>
+			<value />
+		</property>
+	</control>
+
+	<!-- Data tables -->
+	<control>
+		<name>DataTable</name>
+		<property>
+			<name>styleClass</name>
+			<value>table table-striped table-bordered table-hover table-condensed dataTable</value>
+		</property>
+		<property>
+			<name>rows</name>
+			<value>30</value>
+		</property>
+	</control>
+	<control>
+		<name>DataTable.ViewPanel</name>
+		<property>
+			<name>viewStyleClass</name>
+			<value>notesView</value>
+		</property>
+		<property>
+			<name>dataTableStyleClass</name>
+			<value>table table-striped table-bordered table-hover table-condensed dataTable</value>
+		</property>
+		<property>
+			<name>rows</name>
+			<value>30</value>
+		</property>
+	</control>
+
+	<!-- ================== Pager / PagerControl ================================ -->
+
+	<!-- Pager -->
+	<control>
+		<name>Pager</name>
+		<property>
+			<name>outerStyleClass</name>
+			<value>xspPagerContainer</value>
+		</property>
+		<property>
+			<name>styleClass</name>
+			<value>xspPager</value>
+		</property>
+	</control>
+
+	<!-- PagerControl -->
+	<control>
+		<name>PagerControl.Pager</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.First</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspFirst</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Previous</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspPrevious</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Next</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspNext</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Last</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspLast</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Group</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspGroup</value>
+		</property>
+		<property>
+			<name>currentStyleClass</name>
+			<value>xspCurrentItem</value>
+		</property>
+		<property>
+			<name>firstStyleClass</name>
+			<value>xspFirstItem</value>
+		</property>
+		<property>
+			<name>lastStyleClass</name>
+			<value>xspLastItem</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Status</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspStatus</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Goto</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspGoto</value>
+		</property>
+	</control>
+
+	<control>
+		<name>PagerControl.Pager.Separator</name>
+		<property>
+			<name>styleClass</name>
+			<value>xspPagerNav xspSeparator</value>
+		</property>
+	</control>
+	
+	
+	<!-- ================== Dialogs ================================ -->
+	<control>
+		<name>Dialog.Modal</name>
+		<property>
+			<name>styleClass</name>
+			<value>modal</value>
+		</property>
+		<property>
+			<name>style</name>
+			<value>margin-left: inherit</value>
+		</property>
+	</control>
+	<control>
+		<name>DialogContent</name>
+		<property>
+			<name>styleClass</name>
+			<value>modal-body</value>
+		</property>
+	</control>
+	<control>
+		<name>DialogBar</name>
+		<property>
+			<name>styleClass</name>
+			<value>modal-footer</value>
+		</property>
+	</control>
+</theme>

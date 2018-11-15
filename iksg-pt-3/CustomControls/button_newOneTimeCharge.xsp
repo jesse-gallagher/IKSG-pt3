@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:bs="http://frostillic.us/bootstrap">
+	<xc:link value="/oneTimeCharge.xsp" text="New One-Time Charge" styleClass="btn btn-primary btn-sm"/>
+</xp:view>

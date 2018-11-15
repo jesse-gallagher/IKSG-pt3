@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1106" sequence="15" unid="B758A5BB54145FDC85257BBE0055240B">
+<created><datetime dst="true">20130805T112957,87-04</datetime></created>
+<modified><datetime>20141107T104234,63-05</datetime></modified>
+<revised><datetime>20141107T104234,62-05</datetime></revised>
+<lastaccessed><datetime>20141107T104234,62-05</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082308,47-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$FlagsExt"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$FileModDT" sign="true"><datetime>20070117T150859,00-05</datetime></item>
+<item name="$ImageNames" sign="true"><text>system-log-out.png</text></item>
+<item name="$TITLE" sign="true"><text>tango/system-log-out.png</text></item>
+
+
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item></note>

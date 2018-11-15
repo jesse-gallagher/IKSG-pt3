@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]"/>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]"/>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	
+	<xc:layout navigationPath="/Rates/All" pageTitle="Rates">
+		<xp:this.facets>
+			<xc:actionBar xp:key="ActionBar" loaded="${not view.readonly}">
+				<xc:button_newRate refreshId="viewContainer"/>
+			</xc:actionBar>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home"/>
+					<xe:basicLeafNode label="Rates"/>
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+		</xp:this.facets>
+
+		<xp:div id="viewContainer">
+			<xc:list_rates value="#{userInfo.staff or userInfo.admin ? Rates['By Client'] : Rates.mine}"
+				showLink="${userInfo.staff or userInfo.admin}" showClient="${userInfo.staff or userInfo.admin}"/>
+		</xp:div>
+	</xc:layout>
+</xp:view>

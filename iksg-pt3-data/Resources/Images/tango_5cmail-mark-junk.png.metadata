@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="85257C900075D281" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1c6" sequence="4" unid="8A1F606791DCE64785257C900075D4C4">
+<created><datetime>20140303T162701,80-05</datetime></created>
+<modified><datetime>20140307T082227,96-05</datetime></modified>
+<revised><datetime>20140307T082227,95-05</datetime></revised>
+<lastaccessed><datetime>20140307T082227,95-05</datetime></lastaccessed>
+<addedtofile><datetime>20140303T162701,80-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34CiQP</text></item>
+<item name="$FlagsExt"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20060420T103944,00-04</datetime></item>
+<item name="$ImageNames" sign="true"><text>mail-mark-junk.png</text></item>
+<item name="$TITLE" sign="true"><textlist><text>tango\mail-mark-junk.png</text><text>tango\mail-mark-junk.gif</text></textlist></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+</note>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:ff="http://frostillic.us/framework"
+	beforePageLoad="#{controller.beforePageLoad}" afterPageLoad="#{controller.afterPageLoad}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="client" managerName="Clients" key="${empty param.id ? 'new' : param.id}" />
+	</xp:this.data>
+
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/clients.xsp" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/Clients/Client" pageTitle="Client" doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xp:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode loaded="${userInfo.staff}" page="clients" label="Clients" />
+					<xe:basicLeafNode label="#{empty client.name ? 'Client' : client.name}" />
+				</xp:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" loaded="${not controller.readonly}">
+				<xc:buttons_modelCommon/>
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn tabletCols="${userInfo.staff ? 8 : 12}">
+				<xe:widgetContainer titleBarText="Client" styleClass="widget-color-red3">
+					<xe:formTable>
+						<xe:formRow label="Name">
+							<xp:inputText id="Name" value="#{client.name}" />
+						</xe:formRow>
+						<xe:formRow label="Users">
+							<xp:listBox id="Users" value="#{client.Users}" styleClass="usernames-multi-select form-control" multiple="true" disableValidators="true" defaultValue="${client.Users}">
+								<xp:this.attrs>
+									<xp:attr name="data-placeholder" value="Select User(s)" />
+								</xp:this.attrs>
+								<xp:selectItems value="${controller.usersItems}" />
+							</xp:listBox>
+						</xe:formRow>
+						<xe:formRow label="Billing Users">
+							<xp:listBox id="BillingUsers" value="#{client.BillingUsers}" styleClass="usernames-multi-select form-control" multiple="true" disableValidators="true"
+								defaultValue="${client.BillingUsers}">
+								<xp:this.attrs>
+									<xp:attr name="data-placeholder" value="Select Billing User(s)" />
+								</xp:this.attrs>
+								<xp:selectItems value="${controller.billingUsersItems}" />
+							</xp:listBox>
+						</xe:formRow>
+						<xe:formRow label="Include as Profile?" loaded="${userInfo.admin}">
+							<label class="radio-inline">
+								<xp:radio value="#{client.IncludeAsProfile}" defaultSelected="false" selectedValue="Yes" groupName="IncludeAsProfile" />
+								&#160;Yes
+							</label>
+							<label class="radio-inline">
+								<xp:radio value="#{client.IncludeAsProfile}" defaultSelected="true" selectedValue="No" groupName="IncludeAsProfile" />
+								&#160;No
+							</label>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+
+			<xc:layoutColumn tabletCols="4" loaded="${userInfo.staff}">
+				<xe:widgetContainer titleBarText="FreshBooks" styleClass="widget-color-green3">
+					<xe:formTable labelPosition="above">
+						<xe:formRow label="FreskBooks Client">
+							<xp:comboBox id="FreshBooksID" value="#{client.FreshBooksID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="${FreshBooks.clientChoices}" />
+							</xp:comboBox>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+
+		<!--		<xe:widgetContainer titleBarText="Recurring Payments" styleClass="widget-color-green2 no-padding"-->
+		<!--			loaded="${userInfo.staff or userInfo.admin or controller.billingUser}" rendered="#{not empty client.recurringCharges}">-->
+		<!--			<xc:list_recurringCharges value="#{client.recurringCharges}" showLink="false" showClient="false"/>-->
+		<!--		</xe:widgetContainer>-->
+		<!--		<xe:widgetContainer titleBarText="One-Time Payments" styleClass="widget-color-green2 no-padding"-->
+		<!--			loaded="${userInfo.staff or userInfo.admin or controller.billingUser}" rendered="#{not empty client.oneTimeCharges}">-->
+		<!--			<xc:list_oneTimeCharges value="#{client.oneTimeCharges}" showLink="false" showClient="false"/>-->
+		<!--		</xe:widgetContainer>-->
+
+		<xe:widgetContainer titleBarText="Unbilled Time Entries" styleClass="widget-color-green3 no-padding" loaded="${not empty client.FreshBooksID}">
+			<xe:djContentPane id="timeEntriesPane" partialRefresh="true">
+				<xp:this.loadingMessage><![CDATA[
+					<div style="padding: 1em; text-align: center"><i class="icon-spinner icon-spin green bigger-200"></i></div>
+				]]></xp:this.loadingMessage>
+
+				<xp:dataTable value="#{client.openTimeEntries}" var="timeEntry" rows="10000">
+					<xp:column>
+						<xp:this.facets>
+							<xp:text xp:key="header" value="Task" />
+						</xp:this.facets>
+						<xp:text value="#{timeEntry.task.name}" />
+					</xp:column>
+					<xp:column>
+						<xp:this.facets>
+							<xp:text xp:key="header" value="Date" />
+						</xp:this.facets>
+						<xp:text value="#{timeEntry.date}" />
+					</xp:column>
+					<xp:column>
+						<xp:this.facets>
+							<xp:text xp:key="header" value="Hours" />
+						</xp:this.facets>
+						<xp:text value="#{timeEntry.hours}" />
+					</xp:column>
+					<xp:column>
+						<xp:this.facets>
+							<xp:text xp:key="header" value="Notes" />
+						</xp:this.facets>
+						<xp:text value="#{timeEntry.notes}" />
+						<xp:text rendered="#{timeEntry.rush}" value=" " />
+						<xp:text rendered="#{timeEntry.rush}" value="Rush" styleClass="label label-danger arrowed-in" />
+					</xp:column>
+				</xp:dataTable>
+			</xe:djContentPane>
+		</xe:widgetContainer>
+	</xc:layout>
+</xp:view>

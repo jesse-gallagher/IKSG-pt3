@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:ff="http://frostillic.us/framework"
+	beforePageLoad="#{controller.beforePageLoad}" afterPageLoad="#{controller.afterPageLoad}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="project" managerName="Projects" key="${empty param.id ? 'new' : param.id}"/>
+	</xp:this.data>
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/projects.xsp" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/Projects/Project" pageTitle="Project" doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode page="projects" label="Projects" loaded="${userInfo.staff}" />
+					<xe:basicLeafNode label="#{empty project.name ? 'Project' : project.name}" />
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" loaded="${not controller.readonly}">
+				<xc:buttons_modelCommon/>
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn tabletCols="8">
+				<xe:widgetContainer titleBarText="Project" styleClass="widget-color-green">
+					<xe:formTable id="projectInfo">
+						<xe:formRow label="Name">
+							<xp:inputText id="Name" value="#{project.Name}"/>
+						</xe:formRow>
+						<xe:formRow label="Type">
+							<xp:comboBox id="Type" value="#{project.Type}">
+								<xp:selectItem itemLabel="Bag of Tasks" />
+								<xp:selectItem itemLabel="Fixed Scope" />
+								<xp:selectItem itemLabel="Product"/>
+								
+								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="projectInfo"/>
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow rendered="#{controller.displayAdditionalInfo}" label="Status">
+							<xp:comboBox id="Status" value="#{project.status}">
+								<xp:selectItem itemLabel="- N/A -" itemValue=""/>
+								<xp:selectItem itemLabel="Potential"/>
+								<xp:selectItem itemLabel="Planned"/>
+								<xp:selectItem itemLabel="Active"/>
+								<xp:selectItem itemLabel="Complete"/>
+							</xp:comboBox>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+			<xc:layoutColumn tabletCols="4">
+				<xe:widgetContainer titleBarText="Client Info" styleClass="widget-color-red3">
+					<xe:formTable labelPosition="above">
+						<xe:formRow label="Client">
+							<xp:comboBox id="ClientID" value="#{project.ClientID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="${Clients.dropdown_list}" />
+							</xp:comboBox>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="##{id:tasksPane}" data-toggle="tab">Tasks</a>
+				</li>
+				<li>
+					<a href="##{id:notesPane}" data-toggle="tab">Notes</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="tasksPane" class="tab-pane in active">
+					<xc:list_tasks value="#{project.tasks}" showProject="false" showClient="false" />
+				</div>
+				<div id="notesPane" class="tab-pane">
+					<xc:list_notes value="#{project.notes}" />
+				</div>
+			</div>
+		</div>
+
+		<!--		<xe:widgetContainer titleBarText="Tasks" styleClass="widget-color-purple no-padding">-->
+		<!--			<xc:list_tasks value="#{project.tasks}" showProject="false" showClient="false"/>-->
+		<!--		</xe:widgetContainer>-->
+	</xc:layout>
+</xp:view>

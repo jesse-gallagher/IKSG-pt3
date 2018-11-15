@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:ff="http://frostillic.us/framework"
+	beforePageLoad="#{controller.beforePageLoad}" afterPageLoad="#{controller.afterPageLoad}">
+	
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]"/>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xc:layout navigationPath="/Projects/ByClientName" pageTitle="Projects by Client">
+		<xp:this.facets>
+			<xc:actionBar xp:key="ActionBar" loaded="${not view.readonly}">
+				<xc:button_newProject refreshId="viewContainer"/>
+			</xc:actionBar>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home"/>
+					<xe:basicLeafNode label="#{view.pageTitle}"/>
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:searchView xp:key="SearchBar" refreshId="viewContainer"/>
+		</xp:this.facets>
+		
+		<xp:div id="viewContainer">
+			<xp:viewPanel id="viewPanel1" value="#{Projects['By ClientName']}" var="project" pageName="/project.xsp">
+				<xp:this.facets>
+					<xp:pager id="pager2" layout="Previous Group Next" partialRefresh="true" xp:key="footerPager">
+						<xp:this.rendered><![CDATA[#{javascript:
+							getComponent("viewPanel1").getRowCount() > getComponent("viewPanel1").getRows()
+						}]]></xp:this.rendered>
+					</xp:pager>
+				</xp:this.facets>
+				
+				<xp:viewColumn columnName="ClientName"/>
+				
+				<xp:viewColumn columnName="name" displayAs="link">
+					<xp:viewColumnHeader value="Name"/>
+					<xp:this.converter>
+						<ff:convertEmptyValue />
+					</xp:this.converter>
+				</xp:viewColumn>
+				
+				<xp:viewColumn columnName="" value="#{empty project.client ? '' : project.client.name}" displayAs="link"
+					pageUrl="/client.xsp?id=#{project.clientId}">
+					<xp:viewColumnHeader value="Client"/>
+				</xp:viewColumn>
+				
+				<xp:viewColumn columnName="Type">
+					<xp:viewColumnHeader value="Type" />
+					<xp:this.converter>
+						<ff:convertEmptyValue emptyString="Bag of Tasks"/>
+					</xp:this.converter>
+				</xp:viewColumn>
+			</xp:viewPanel>
+		</xp:div>
+	</xc:layout>
+</xp:view>

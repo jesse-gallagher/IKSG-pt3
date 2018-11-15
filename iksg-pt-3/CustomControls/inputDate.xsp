@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:div styleClass="row">
+		<xp:this.loaded><![CDATA[${javascript:
+			!facesContext.getApplication().getVariableResolver().resolveVariable(facesContext, compositeData.sourceName).isReadOnly(compositeData.fieldName)
+		}]]></xp:this.loaded>
+		<div class="col-xs-4 col-sm-5">
+			<div class="input-group">
+				<xp:inputText id="DateField" value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.fieldName + '}'}" styleClass="form-control date-picker">
+					<xp:this.attrs>
+						<xp:attr name="data-date-format" value="MM d, yyyy" />
+					</xp:this.attrs>
+					<xp:this.converter>
+						<xp:convertDateTime pattern="MMMM d, yyyy" />
+					</xp:this.converter>
+				</xp:inputText>
+				<xp:span styleClass="input-group-addon">
+					<i class="fa fa-calendar"></i>
+				</xp:span>
+			</div>
+			
+<!--			<dl>-->
+<!--				<dt>Family</dt>-->
+<!--				<dd><xp:text value="#{javascript:getComponent('DateField').getFamily()}"/></dd>-->
+<!--				-->
+<!--				<dt>Renderer Type</dt>-->
+<!--				<dd><xp:text value="#{javascript:getComponent('DateField').getRendererType()}"/></dd>-->
+<!--				-->
+<!--				<dt>Theme Family</dt>-->
+<!--				<dd><xp:text value="#{javascript:getComponent('DateField').getStyleKitFamily()}"/></dd>-->
+<!--				-->
+<!--				<dt>Renderer</dt>-->
+<!--				<dd><xp:text value="#{javascript:getComponent('DateField').getRenderer(facesContext).getWrapped()}"/></dd>-->
+<!--			</dl>-->
+		</div>
+		<xp:div styleClass="col-xs-4 col-sm-5 input-group bootstrap-timepicker" rendered="#{compositeData.includeTime}" loaded="${not empty compositeData.timeFieldName}">
+			<xp:inputText id="TimeField" value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.timeFieldName + '}'}"
+				styleClass="time-picker form-control" defaultValue="#{javascript:@Time(@Now())}">
+				<xp:this.converter>
+					<xp:convertDateTime pattern="hh:mm a" />
+				</xp:this.converter>
+			</xp:inputText>
+			<span class="input-group-addon">
+				<i class="icon-time"></i>
+			</span>
+		</xp:div>
+	</xp:div>
+	<xp:div>
+		<xp:this.loaded><![CDATA[${javascript:
+			facesContext.getApplication().getVariableResolver().resolveVariable(facesContext, compositeData.sourceName).isReadOnly(compositeData.fieldName)
+		}]]></xp:this.loaded>
+		<xp:text value="${javascript:'#{' + compositeData.sourceName + '.' + compositeData.fieldName + '}'}">
+			<xp:this.converter>
+				<xp:convertDateTime pattern="MMMM d, yyyy" />
+			</xp:this.converter>
+		</xp:text>
+	</xp:div>
+</xp:view>

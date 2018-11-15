@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="164e" sequence="51" unid="362C894147CB2B3685257CFC006CDDC1">
+<created><datetime dst="true">20140619T154906,57-04</datetime></created>
+<modified><datetime dst="true">20141002T102058,83-04</datetime></modified>
+<revised><datetime dst="true">20141002T102058,82-04</datetime></revised>
+<lastaccessed><datetime dst="true">20141002T102058,82-04</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20140619T154906,57-04</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+
+
+<item name="$TITLE"><text>config/ConfigRequestCustomizerFactory.java</text></item>
+
+
+
+
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>config/ConfigRequestCustomizerFactory.java</text></item>
+
+
+
+</note>

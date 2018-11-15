@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:viewPanel id="viewPanel1" value="#{compositeData.value}" var="rate">
+		<xp:this.facets>
+			<xp:pager id="pager1" layout="Previous Group Next" partialRefresh="true" xp:key="footerPager">
+				<xp:this.rendered><![CDATA[#{javascript:
+					getComponent("viewPanel1").getRowCount() > getComponent("viewPanel1").getRows()
+				}]]></xp:this.rendered>
+			</xp:pager>
+		</xp:this.facets>
+	
+		<xp:viewColumn columnName="ClientID" value="#{empty rate.clientId ? '' : rate.client.name}" loaded="${(userInfo.staff or userInfo.admin) and not (compositeData.showClient == false)}"
+			displayAs="link" pageUrl="/client.xsp?id=#{rate.clientId}">
+			<xp:viewColumnHeader value="Client"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="Summary" displayAs="${javascript:compositeData.showLink == false ? 'text' : 'link'}" pageUrl="/rate.xsp?id=#{rate.id}">
+			<xp:viewColumnHeader value="Summary"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="Amount">
+			<xp:this.converter>
+				<xp:convertNumber type="currency" currencySymbol="$" currencyCode="USD"/>
+			</xp:this.converter>
+			<xp:viewColumnHeader value="Amount" />
+		</xp:viewColumn>
+		<xp:viewColumn columnName="Type">
+			<xp:viewColumnHeader value="Type"/>
+		</xp:viewColumn>
+	</xp:viewPanel>
+</xp:view>

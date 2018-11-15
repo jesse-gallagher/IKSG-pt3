@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:bs="http://frostillic.us/bootstrap">
+
+		<xp:link value="/task.xsp#{empty compositeData.parentId ? '' : '?parentId='}#{compositeData.parentId}" styleClass="btn btn-primary btn-sm" text="#{empty compositeData.text ? 'New Task' : compositeData.text}"/>
+
+<!--	<xp:button id="newTask" value="New Task" styleClass="btn btn-primary btn-sm">-->
+<!--		<xp:eventHandler event="onclick" submit="false">-->
+<!--			<xp:this.script><![CDATA[ XSP.openDialog("#{id:newTaskDialog}") ]]></xp:this.script>-->
+<!--		</xp:eventHandler>-->
+<!--	</xp:button>-->
+<!---->
+<!--	<xe:dialog id="newTaskDialog" title="New Task" styleClass="modal">-->
+<!--		<xe:this.onShow><![CDATA[-->
+<!--			var div = dojo.query(".modal")[0]-->
+<!--			div.style.display = "block"-->
+<!--			-->
+<!--			// Clear out margins for the inner form-->
+<!--			dojo.query("form", div).style("margin", "0");-->
+<!---->
+<!--			var titleBar = $(".dijitDialogTitleBar", div).addClass("modal-header");-->
+<!---->
+<!--			var titleNode = $(".dijitDialogTitle", titleBar);-->
+<!--			var title = titleNode.text();-->
+<!--			titleNode.remove();-->
+<!--			-->
+<!--			$(".dijitDialogCloseIcon", titleBar).removeClass("dijitDialogCloseIcon").addClass("close");-->
+<!--			titleBar.append("<h3>" + title + "</h3>");-->
+<!--			-->
+<!--			dojo.addClass(div, "in");-->
+<!--			-->
+<!--			var children = div.childNodes;-->
+<!--			var wrapper = document.createElement("div");-->
+<!--			wrapper.className = "modal-dialog";-->
+<!--			div.appendChild(wrapper);-->
+<!--			var wrapper2 = document.createElement("div");-->
+<!--			wrapper2.className = "modal-content";-->
+<!--			wrapper.appendChild(wrapper2);-->
+<!--			-->
+<!--			for(var i = 0; i < children.length; i++) {-->
+<!--				wrapper2.appendChild(children[i]);-->
+<!--				//dojo.place(children[i], wrapper2);-->
+<!--			}-->
+<!--		]]></xe:this.onShow>-->
+<!--		<xp:panel>-->
+<!--			<xp:this.dataContexts>-->
+<!--				<xp:dataContext var="newTask" value="${Tasks.new}"/>-->
+<!--			</xp:this.dataContexts>-->
+<!--		-->
+<!--			<xe:dialogContent>-->
+<!--				<div class="form-horizontal">-->
+<!--					<bs:controlGroup label="Summary">-->
+<!--						<xp:inputText id="newTaskSummary" value="#{newTask.Summary}" required="true" />-->
+<!--					</bs:controlGroup>-->
+<!--					<bs:controlGroup label="Assignee">-->
+<!--						<xp:div id="assigneeRefresher">-->
+<!--							<xp:inputText id="inputText1" value="#{newTask.Assignee}" multipleSeparator="; "-->
+<!--								defaultValue="#{context.user.name}">-->
+<!--								<xp:this.converter>-->
+<!--									<xp:converter converterId="displayNameConverter" />-->
+<!--								</xp:this.converter>-->
+<!--							</xp:inputText>-->
+<!--						</xp:div>-->
+<!--						<xp:link text="Self">-->
+<!--							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="assigneeRefresher"-->
+<!--								disableValidators="true">-->
+<!--								<xp:this.action><![CDATA[#{javascript:-->
+<!--									var newTaskAssignee = newTask.getValue("Assignee")-->
+<!--									var username = session.getEffectiveUserName()-->
+<!--									if(newTaskAssignee instanceof java.util.List) {-->
+<!--										if(!newTaskAssignee.contains(username)) {-->
+<!--											newTaskAssignee.add(username)-->
+<!--											newTask.setValue("Assignee", newTaskAssignee)-->
+<!--										}-->
+<!--									} else if(newTaskAssignee instanceof java.lang.String) {-->
+<!--										var current = newTaskAssignee-->
+<!--										if(current.trim().isEmpty()) {-->
+<!--											newTask.setValue("Assignee", username)-->
+<!--										} else {-->
+<!--											if(current != username) {-->
+<!--												var result = new java.util.ArrayList()-->
+<!--												result.add(current.trim())-->
+<!--												result.add(username)-->
+<!--												newTask.setValue("Assignee", result)-->
+<!--											}-->
+<!--										}-->
+<!--									} else {-->
+<!--										newTask.setValue("Assignee", username)-->
+<!--									}-->
+<!--								}]]></xp:this.action>-->
+<!--							</xp:eventHandler>-->
+<!--						</xp:link>-->
+<!--						&#160;|&#160;-->
+<!--						<xp:link text="Clear">-->
+<!--							<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="assigneeRefresher"-->
+<!--								disableValidators="true">-->
+<!--								<xp:this.action><![CDATA[#{javascript:-->
+<!--									newTask.setValue("Assignee", "")-->
+<!--								}]]></xp:this.action>-->
+<!--							</xp:eventHandler>-->
+<!--						</xp:link>-->
+<!--					</bs:controlGroup>-->
+<!--				</div>-->
+<!--			</xe:dialogContent>-->
+<!--			<xe:dialogButtonBar>-->
+<!--				<xp:button id="createTask" styleClass="btn btn-primary">-->
+<!--					<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="#{compositeData.refreshId}">-->
+<!--						<xp:this.action><![CDATA[#{javascript:-->
+<!--							newTask.save()-->
+<!--						}]]></xp:this.action>-->
+<!--						<xp:this.onComplete><![CDATA[-->
+<!--							XSP.closeDialog("#{id:newTaskDialog}")-->
+<!--						]]></xp:this.onComplete>-->
+<!--					</xp:eventHandler>-->
+<!--					<i class="icon-check"></i>-->
+<!--					&#160;Create-->
+<!--				</xp:button>-->
+<!--				<xp:button id="createTaskAndView" styleClass="btn btn-primary">-->
+<!--					<xp:eventHandler event="onclick" submit="true">-->
+<!--						<xp:this.action><![CDATA[#{javascript:-->
+<!--							if(newTask.save()) {-->
+<!--								context.redirectToPage("/task.xsp?id=" + newTask.getValue("id"))-->
+<!--							}-->
+<!--						}]]></xp:this.action>-->
+<!--					</xp:eventHandler>-->
+<!--					<i class="icon-pencil"></i>-->
+<!--					&#160;Create and Expand-->
+<!--				</xp:button>-->
+<!--			</xe:dialogButtonBar>-->
+<!--		</xp:panel>-->
+<!--	</xe:dialog>-->
+</xp:view>

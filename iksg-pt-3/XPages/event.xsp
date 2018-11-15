@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}" xmlns:ff="http://frostillic.us/framework">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="event" managerName="Events" key="${empty param.id ? 'new' : param.id}"/>
+	</xp:this.data>
+
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/calendar.xsp" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/Events/Event" pageTitle="Event" doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode page="calendar" label="Calendar" />
+					<xe:basicLeafNode label="Event" />
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" loaded="${not controller.readonly}">
+				<xc:buttons_modelCommon/>
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn tabletCols="8">
+				<xe:widgetContainer titleBarText="Event" styleClass="widget-color-orange">
+					<xe:formTable id="eventForm">
+						<xe:formRow label="Summary">
+							<xp:inputText id="Name" value="#{event.Summary}" required="true" />
+						</xe:formRow>
+						<xe:formRow label="Type">
+							<xp:comboBox id="AppointmentType" value="#{event.AppointmentType}">
+								<xp:selectItem itemLabel="Appointment" itemValue="0" />
+								<xp:selectItem itemLabel="All-Day Event" itemValue="2" />
+
+								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="eventForm" disableValidators="true" />
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow label="Start">
+							<xc:inputDate sourceName="event" fieldName="StartDate" timeFieldName="StartTime"
+								includeTime="#{event.AppointmentType == '0' and not view.readonly}"/>
+						</xe:formRow>
+						<xe:formRow label="End">
+							<xc:inputDate sourceName="event" fieldName="EndDate" timeFieldName="EndTime"
+								includeTime="#{event.AppointmentType == '0' and not view.readonly}"/>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+			<xc:layoutColumn tabletCols="4">
+				<xe:widgetContainer titleBarText="Client Info" styleClass="widget-color-red3">
+					<xe:formTable labelPosition="above">
+						<xe:formRow label="Client">
+							<xp:comboBox id="ClientID" value="#{event.ClientID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="${Clients.dropdown_list}" />
+							</xp:comboBox>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+		
+		<xc:layoutRow>
+			<xc:layoutColumn>
+				<xc:inputHTML sourceName="event" fieldName="Body"/>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+	</xc:layout>
+</xp:view>

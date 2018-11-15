@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="filter" maintenanceversion="1.1" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="8ee" sequence="9" unid="3C0886B6FA58B73B85257BBE006D7F8E">
+<created><datetime dst="true">20130805T155600,78-04</datetime></created>
+<modified><datetime>20140307T082244,37-05</datetime></modified>
+<revised><datetime>20140307T082244,36-05</datetime></revised>
+<lastaccessed><datetime>20140307T082244,36-05</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082308,27-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$TITLE" sign="true"><text>hijackPartialRefresh.js</text></item>
+<item name="$Flags"><text>h534Q</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+</note>

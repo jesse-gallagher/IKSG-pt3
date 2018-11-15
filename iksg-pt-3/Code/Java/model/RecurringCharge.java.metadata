@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="119a" sequence="77" unid="79C0162698D52F9B85257BFF005F7BC6">
+<created><datetime dst="true">20131009T132256,06-04</datetime></created>
+<modified><datetime dst="true">20141002T102053,57-04</datetime></modified>
+<revised><datetime dst="true">20141002T102053,56-04</datetime></revised>
+<lastaccessed><datetime dst="true">20141002T102053,56-04</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082309,21-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>model/RecurringCharge.java</text></item>
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>model/RecurringCharge.java</text></item>
+
+
+
+</note>

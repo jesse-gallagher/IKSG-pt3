@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:viewPanel id="viewPanel1" value="#{compositeData.value}" var="task">
+		<xp:this.facets>
+			<xp:pager id="pager2" layout="Previous Group Next" partialRefresh="true" xp:key="footerPager">
+				<xp:this.rendered><![CDATA[#{javascript:
+					getComponent("viewPanel1").getRowCount() > getComponent("viewPanel1").getRows()
+				}]]></xp:this.rendered>
+			</xp:pager>
+		</xp:this.facets>
+
+		<xp:viewColumn columnName="Due" value="#{empty task.Due ? '(No Date)' : task.Due}">
+			<xp:this.converter><xp:converter converterId="relativeDateConverter"/></xp:this.converter>
+			<xp:viewColumnHeader value="Due"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="" value="">
+			<xp:viewColumnHeader value="Summary"/>
+			<xc:link value="/task.xsp?id=#{task.id}" text="#{task.summary}">
+				<xp:this.styleClass><![CDATA[#{
+					task.status == 'Closed' or task.status == 'SubmittedToClient' ? 'text-muted' :
+					task.status == 'InProgress' ? 'text-warning' :
+					task.timeFrame == 'Rush' or task.timeFrame == 'Urgent' ? 'text-danger' :
+					''
+				}]]></xp:this.styleClass>
+				<xc:taskIcon value="#{task}"/>
+			</xc:link>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="Assignee">
+			<xp:this.converter><xp:converter converterId="shortNameConverter"/></xp:this.converter>
+			<xp:viewColumnHeader value="Assignee"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="" value="" loaded="${not (compositeData.showProject == false)}">
+			<xc:link value="/project.xsp?id=#{task.project.id}" text="#{task.project.name}" rendered="#{not empty task.projectId}"/>
+			<xp:viewColumnHeader value="Project"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="" value="" loaded="${not userInfo.client and not (compositeData.showClient == false)}">
+			<xc:link value="/client.xsp?id=#{task.client.id}" text="#{task.client.name}" rendered="#{not empty task.clientId}"/>
+			<xp:viewColumnHeader value="Client"/>
+		</xp:viewColumn>
+	</xp:viewPanel>
+</xp:view>

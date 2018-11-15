@@ -1,0 +1,99 @@
+<theme extends="wrapbootstrap-ace-1.3-skin1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="platform:/plugin/com.ibm.designer.domino.stylekits/schema/stylekit.xsd">
+<!--wrapbootstrap-ace-1.3-skin1-->
+	<resources>
+		<styleSheet href="/style.css"/>
+		<styleSheet href="/fixes.css"/>
+		
+		<script src="/js/ajax-chosen.min.js" clientSide="true"/>
+		
+		<dojoModule name="dojo.behavior"/>
+		<script src="/behavior.js" clientSide="true"/>
+		<script src="/hijackPartialRefresh.js" clientSide="true"/>
+		
+<!--		<script src="/.ibmxspres/domino/xsp/.ibmxspres/.wrapbootstrap-ace-1.2/js/markdown/markdown.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/domino/xsp/.ibmxspres/.wrapbootstrap-ace-1.2/js/markdown/bootstrap-markdown.min.js" clientSide="true"/>-->
+<!--		<script src="/.ibmxspres/domino/xsp/.ibmxspres/.wrapbootstrap-ace-1.2/js/bootstrap-wysiwyg.min.js" clientSide="true"/>-->
+	</resources>
+	
+	<control>
+		<name>ViewRoot</name>
+		<property>
+			<name>pageIcon</name>
+			<value>/$Icon</value>
+		</property>
+		<property>
+			<name>pageTitle</name>
+			<value>#{appConfig.appName}</value>
+		</property>
+<!--		<property>-->
+<!--			<name>rendererType</name>-->
+<!--			<value>frostillicus.wrapbootstrap.ace1_3.ViewRoot</value>-->
+<!--		</property>-->
+	</control>
+	
+	<control>
+		<name>InputField.EditBox</name>
+		<property type="boolean">
+			<name>showReadonlyAsDisabled</name>
+			<value>true</value>
+		</property>
+	</control>
+	<control>
+		<name>InputField.DateTimePicker</name>
+		<property type="boolean">
+			<name>showReadonlyAsDisabled</name>
+			<value>true</value>
+		</property>
+		<property>
+			<name>styleClass</name>
+			<value>form-control</value>
+		</property>
+	</control>
+	
+	<control>
+		<name>Dojo.Form</name>
+		<property type="boolean">
+			<name>showReadonlyAsDisabled</name>
+			<value>true</value>
+		</property>
+	</control>
+	
+	<control>
+		<name>ListBox</name>
+		<property type="boolean">
+			<name>showReadonlyAsDisabled</name>
+			<value>true</value>
+		</property>
+	</control>
+	
+	<control>
+		<name>ComboBox</name>
+		<property type="boolean">
+			<name>showReadonlyAsDisabled</name>
+			<value>true</value>
+		</property>
+	</control>
+	
+	<!-- Dialog -->
+<!--	<control>-->
+<!--		<name>Dialog.Modal</name>-->
+<!--		<property>-->
+<!--			<name>rendererType</name>-->
+<!--			<value>frostillicus.wrapbootstrap.ace1_2.dialog.BootstrapDialog</value>-->
+<!--		</property>-->
+<!--	</control>-->
+<!--	<control>-->
+<!--		<name>DialogBar</name>-->
+<!--		<property>-->
+<!--			<name>rendererType</name>-->
+<!--			<value>frostillicus.wrapbootstrap.ace1_2.dialog.BootstrapDialogButtonBar</value>-->
+<!--		</property>-->
+<!--	</control>-->
+<!--	<control>-->
+<!--		<name>DialogContent</name>-->
+<!--		<property>-->
+<!--			<name>rendererType</name>-->
+<!--			<value>frostillicus.wrapbootstrap.ace1_2.dialog.BootstrapDialogContent</value>-->
+<!--		</property>-->
+<!--	</control>-->
+</theme>

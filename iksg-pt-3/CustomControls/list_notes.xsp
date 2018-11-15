@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:viewPanel id="taskList" value="#{compositeData.value}" var="note">
+		<xp:this.facets>
+			<xp:pager id="pager2" layout="Previous Group Next" partialRefresh="true" xp:key="footerPager">
+				<xp:this.rendered><![CDATA[#{javascript:
+					getComponent("taskList").getRowCount() > getComponent("taskList").getRows()
+				}]]></xp:this.rendered>
+			</xp:pager>
+		</xp:this.facets>
+	
+		<xp:viewColumn columnName="$Created">
+			<xp:viewColumnHeader value="Created"/>
+			<xp:this.converter><xp:convertDateTime type="date"/></xp:this.converter>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="Name" displayAs="link" pageUrl="/note.xsp?id=#{note.id}">
+			<xp:viewColumnHeader value="Name"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="" value="#{empty note.client ? '' : note.client.Name}" displayAs="link"
+			pageUrl="/client.xsp?id=#{note.clientId}">
+			<xp:viewColumnHeader value="Client"/>
+		</xp:viewColumn>
+		<xp:viewColumn columnName="" value="#{empty note.project ? '' : note.project.Name}" displayAs="link"
+			pageUrl="/project.xsp?id=#{note.projectId}">
+			<xp:viewColumnHeader value="Project"/>
+		</xp:viewColumn>
+	</xp:viewPanel>
+</xp:view>

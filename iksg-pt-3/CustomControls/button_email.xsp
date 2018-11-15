@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xc:link styleClass="btn btn-small">
+		<xp:this.value><![CDATA[${javascript:
+			var requestURI = facesContext.getExternalContext().getRequest().getRequestURI()
+			var query = facesContext.getExternalContext().getRequest().getQueryString()
+			var url = "https://somedomain.com" + requestURI + (query == "" ? "" : ("?" + query))
+			var subject = "Re: IKSG Project Tracking element"
+			return "mailto:?subject=" + java.net.URLEncoder.encode(subject).replace("+", "%20") + "&body=" + java.net.URLEncoder.encode(url + "\n")
+		}]]></xp:this.value>
+		<i class="icon-envelope"></i>
+	</xc:link>
+</xp:view>

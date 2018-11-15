@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='85257BBF004BB372'>
+<noteinfo noteid='10f2' unid='52825DD92616592985257BF00011CE3A' sequence='24'>
+<created><datetime dst='true'>20130923T231429,06-04</datetime></created>
+<modified><datetime>20140307T082252,59-05</datetime></modified>
+<revised><datetime>20140307T082252,58-05</datetime></revised>
+<lastaccessed><datetime>20140307T082252,58-05</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082308,37-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><text>$$ReturnGeneralError</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Info' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$WindowTitle' sign='true'><formula>"Error"</formula></item>
+<item name='$HTMLHeadTag' sign='true'><formula>"&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/bootstrap.min.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/bootstrap-responsive.min.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/font-awesome.min.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-fonts.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace.min.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-responsive.min.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/ace-skins.min.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/chosen.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='/xsp/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/css/datepicker.css'&gt;"</formula></item>
+<item name='$HTMLBodyTag' sign='true'><formula>" class='skin-1 login-layout'"</formula></item>
+<item name='$Flags'><text/></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>$$ReturnGeneralError</text></item>
+<item name='MessageString' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$Fields'><text>MessageString</text></item>
+<item name='$Body' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAzP8IAAAAAACF/zQAAQAACjxk
+aXYgY2xhc3M9Im1haW4tY29udGFpbmVyIGNvbnRhaW5lci1mbHVpZCI+gQKDBAEAhf8jAAEAAAoJ
+PGRpdiBjbGFzcz0ibWFpbi1jb250ZW50Ij4AgQKDBAEAhf8kAAEAAAoJCTxkaXYgY2xhc3M9InBh
+Z2UtY29udGVudCI+gQKDBAEAhf8iAAEAAAoJCQk8ZGl2IGNsYXNzPSJyb3ctZmx1aWQiPoECgwQB
+AIX/TwABAAAKCQkJCTxkaXYgY2xhc3M9InNwYW4xMiI+PGRpdiBjbGFzcz0iZXJyb3ItY29udGFp
+bmVyIj48ZGl2IGNsYXNzPSJ3ZWxsIj4AgQKDBAEAhf8uAAEAAAoJCQkJCTxoMSBjbGFzcz0iZ3Jl
+eSBsaWdodGVyIHNtYWxsZXIiPoECgwQBAIX/DgABAAAKCQkJCQkJhf9DAAEAAAo8aSBjbGFzcz0i
+aWNvbi13cmVuY2ggaWNvbi1hbmltYXRlZC13cmVuY2ggYmlnZ2VyLTEyNSI+PC9pPgCBAoMEAQCF
+/xMAAQAACgkJCQkJCUVycm9yAIECgwQBAIX/EgABAAAKCQkJCQk8L2gxPoECgwQBAIX/EwABAAAK
+CQkJCQk8aHIgLz4AgQKDBAEAhf8pAAEAAAoJCQkJCTxoMyBjbGFzcz0ibGlnaHRlciBzbWFsbGVy
+Ij4Azf8IAAAAAACF/wkAAQAACiAA3QYAAIr//v9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAeAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACK/zIAigAA
+BQAwAgAAAAAAAAIBAAAKAAAAAAAAAAANAAAAAABNZXNzYWdlU3RyaW5nAGIOAQCEAAAAAAAAAAAA
+3gYAAIr/hf8JAAEAAAogAMz/CAAAAAAAhf8NAAEAAAo8L2gzPgCBAoMEAQCF/x4AAQAACgkJCQk8
+L2Rpdj48L2Rpdj48L2Rpdj6BAoMEAQCF/xEAAQAACgkJCTwvZGl2PgCBAoMEAQCF/xAAAQAACgkJ
+PC9kaXY+gQKDBAEAhf8PAAEAAAoJPC9kaXY+AIECgwQBAIX/DgABAAAKPC9kaXY+zf8IAAAAAAA=
+</rawitemdata></item></note>
+

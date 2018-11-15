@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}">
+	
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Admin]"/>
+				<xp:aclEntry type="ROLE" right="READER" name="[Admin]"/>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="/dashboard.xsp" redirect="true" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/Config/AppConfig" pageTitle="App Config" doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home"/>
+					<xe:basicLeafNode label="Config"/>
+					<xe:basicLeafNode label="App Config"/>
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar" rendered="#{not view.readonly}">
+				<xp:button id="save" value="Save" styleClass="btn btn-primary btn-sm">
+					<xp:eventHandler event="onclick" submit="true" action="#{controller.save}">
+						<xp:this.script><![CDATA[
+							return XSP.confirm("Update app settings?")
+						]]></xp:this.script>
+					</xp:eventHandler>
+				</xp:button>
+			</xc:actionBar>
+		</xp:this.facets>
+		
+		<xe:widgetContainer titleBarText="General" styleClass="widget-color-grey">
+			<xe:formTable>
+				<xe:formRow label="App Name">
+					<xp:inputText value="#{viewScope.appConfigData.appName}" defaultValue="${appConfig.appName}"/>
+				</xe:formRow>
+			</xe:formTable>
+		</xe:widgetContainer>
+		
+		<xe:widgetContainer titleBarText="Communication" styleClass="widget-color-grey">
+			<xe:formTable>
+				<xe:formRow label="New Request Targets">
+					<xp:listBox id="Assignee" value="#{viewScope.appConfigData.newRequestTargets}" defaultValue="${controller.newRequestTargetValues}"
+						styleClass="usernames-multi-select form-control" multiple="true" disableValidators="true">
+						<xp:this.attrs>
+							<xp:attr name="data-placeholder" value="Select Name(s)"/>
+						</xp:this.attrs>
+						<xp:selectItems value="${controller.newRequestTargets}"/>
+					</xp:listBox>
+				</xe:formRow>
+			</xe:formTable>
+		</xe:widgetContainer>
+		
+		<xe:widgetContainer titleBarText="Data Sources" styleClass="widget-color-grey">
+			<xe:formTable>
+				<xe:formRow label="Tasks Database Path">
+					<xp:inputText value="#{viewScope.appConfigData.dataDatabaseServer}" defaultValue="#{appConfig.dataDatabaseServer}" styleClass="input-large">
+						<xp:this.attrs><xp:attr name="placeholder" value="Local Server"/></xp:this.attrs>
+					</xp:inputText>
+					!!
+					<xp:inputText value="#{viewScope.appConfigData.dataDatabasePath}" defaultValue="#{appConfig.dataDatabasePath}" styleClass="input-large"/>
+				</xe:formRow>
+				<xe:formRow label="Client Database Path">
+					<xp:inputText value="#{viewScope.appConfigData.clientDatabaseServer}" defaultValue="#{appConfig.clientDatabaseServer}" styleClass="input-large">
+						<xp:this.attrs><xp:attr name="placeholder" value="Local Server"/></xp:this.attrs>
+					</xp:inputText>
+					!!
+					<xp:inputText value="#{viewScope.appConfigData.clientDatabasePath}" defaultValue="#{appConfig.clientDatabasePath}" styleClass="input-large"/>
+				</xe:formRow>
+				<xe:formRow label="Billing Database Path">
+					<xp:inputText value="#{viewScope.appConfigData.billingDatabaseServer}" defaultValue="#{appConfig.billingDatabaseServer}" styleClass="input-large">
+						<xp:this.attrs><xp:attr name="placeholder" value="Local Server"/></xp:this.attrs>
+					</xp:inputText>
+					!!
+					<xp:inputText value="#{viewScope.appConfigData.billingDatabasePath}" defaultValue="#{appConfig.billingDatabasePath}" styleClass="input-large"/>
+				</xe:formRow>
+				<xe:formRow label="Events Database Path">
+					<xp:inputText value="#{viewScope.appConfigData.eventsDatabaseServer}" defaultValue="#{appConfig.eventsDatabaseServer}" styleClass="input-large">
+						<xp:this.attrs><xp:attr name="placeholder" value="Local Server"/></xp:this.attrs>
+					</xp:inputText>
+					!!
+					<xp:inputText value="#{viewScope.appConfigData.eventsDatabasePath}" defaultValue="#{appConfig.eventsDatabasePath}" styleClass="input-large"/>
+				</xe:formRow>
+				<xe:formRow label="App Updates Database Path">
+					<xp:inputText value="#{viewScope.appConfigData.updatesDatabaseServer}" defaultValue="#{appConfig.updatesDatabaseServer}" styleClass="input-large">
+						<xp:this.attrs><xp:attr name="placeholder" value="Local Server"/></xp:this.attrs>
+					</xp:inputText>
+					!!
+					<xp:inputText value="#{viewScope.appConfigData.updatesDatabasePath}" defaultValue="#{appConfig.updatesDatabasePath}" styleClass="input-large"/>
+				</xe:formRow>
+			</xe:formTable>
+		</xe:widgetContainer>
+		
+		<xe:widgetContainer titleBarText="FreshBooks" styleClass="widget-color-green3">
+			<xe:formTable>
+				<xe:formRow label="Account Name">
+					<xp:inputText value="#{viewScope.appConfigData.freshBooksAccount}" defaultValue="#{appConfig.freshBooksAccount}"/>
+				</xe:formRow>
+				<xe:formRow label="API URL">
+					<xp:inputText value="#{viewScope.appConfigData.freshBooksAPIURL}" defaultValue="#{appConfig.freshBooksAPIURL}"/>
+				</xe:formRow>
+				<xe:formRow label="Authentication Token">
+					<xp:inputText value="#{viewScope.appConfigData.freshBooksAuthToken}" defaultValue="#{appConfig.freshBooksAuthToken}"/>
+				</xe:formRow>
+			</xe:formTable>
+		</xe:widgetContainer>
+	</xc:layout>
+</xp:view>

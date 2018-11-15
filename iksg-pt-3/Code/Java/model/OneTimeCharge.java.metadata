@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="137e" sequence="67" unid="C6541A64DAC6E43885257C54007B0DD6">
+<created><datetime>20140102T172404,70-05</datetime></created>
+<modified><datetime dst="true">20141002T102054,12-04</datetime></modified>
+<revised><datetime dst="true">20141002T102054,11-04</datetime></revised>
+<lastaccessed><datetime dst="true">20141002T102054,11-04</datetime></lastaccessed>
+<addedtofile><datetime>20140102T172404,70-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>model/OneTimeCharge.java</text></item>
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>model/OneTimeCharge.java</text></item>
+
+
+
+</note>

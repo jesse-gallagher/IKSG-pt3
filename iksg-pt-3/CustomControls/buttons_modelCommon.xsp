@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:panel disableTheme="true" loaded="${not controller.readonly}">
+		<xp:button id="saveAndCloseButton" value="Save and Close" styleClass="btn btn-primary btn-sm">
+			<xp:eventHandler event="onclick" submit="true" action="#{controller.save}" />
+		</xp:button>
+		&#160;
+		<xp:button id="saveOnlyButton" value="Save" styleClass="btn btn-primary btn-sm">
+			<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="saveOnlyButton" action="#{controller.saveOnly}" />
+		</xp:button>
+		&#160;
+		<xp:button id="deleteButton" value="Delete" styleClass="btn btn-danger btn-sm">
+			<xp:eventHandler event="onclick" submit="true" action="#{controller.delete}" disableValidators="true">
+<!--				<xp:this.script><![CDATA[-->
+<!--					return XSP.confirm("Delete this #{javascript:controller.getFriendlyModelName()}?")-->
+<!--				]]></xp:this.script>-->
+			</xp:eventHandler>
+		</xp:button>
+	</xp:panel>
+</xp:view>

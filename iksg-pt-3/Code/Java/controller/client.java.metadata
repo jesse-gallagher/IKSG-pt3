@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.2" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="11aa" sequence="113" unid="707EA36A929DF7AD85257BF00063B620">
+<created><datetime dst="true">20130924T140906,88-04</datetime></created>
+<modified><datetime dst="true">20141002T102057,99-04</datetime></modified>
+<revised><datetime dst="true">20141002T102057,98-04</datetime></revised>
+<lastaccessed><datetime dst="true">20141002T102057,98-04</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082309,29-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name><name>CN=Jesse Gallagher/O=IKSG</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=IKSG</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>controller/client.java</text></item>
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>controller/client.java</text></item>
+
+</note>

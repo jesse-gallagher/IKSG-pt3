@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" beforePageLoad="#{controller.beforePageLoad}"
+	afterPageLoad="#{controller.afterPageLoad}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]"/>
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]"/>
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+	
+	<xc:layout navigationPath="/Calendar" pageTitle="Calendar">
+		<xp:this.facets>
+			<xc:actionBar xp:key="ActionBar" loaded="${not view.readonly}">
+				<xc:button_newEvent loaded="${userInfo.staff}"/>
+				<xc:button_newTask refreshId="viewContainer" loaded="${userInfo.staff}"/>
+			</xc:actionBar>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home"/>
+					<xe:basicLeafNode label="Calendar"/>
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+		</xp:this.facets>
+
+		<div id="calendar"></div>
+	</xc:layout>
+	
+	<xp:eventHandler event="onClientLoad" submit="false"><xp:this.script><![CDATA[
+		var calendar = $('#calendar').fullCalendar({
+			buttonText: {
+				prev: '<i class="fa fa-chevron-left"></i>',
+				next: '<i class="fa fa-chevron-right"></i>'
+			},
+		
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			events: ${controller.tasksJSON},
+			editable: false,
+			droppable: false,
+			selectable: false
+		})
+	]]></xp:this.script></xp:eventHandler>
+</xp:view>

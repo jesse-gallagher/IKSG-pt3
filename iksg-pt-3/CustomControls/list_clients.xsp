@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xp:viewPanel id="clientList" value="#{compositeData.value}" var="client">
+		<xp:this.facets>
+			<xp:pager id="pager2" layout="Previous Group Next" partialRefresh="true" xp:key="footerPager">
+				<xp:this.rendered><![CDATA[#{javascript:
+					getComponent("clientList").getRowCount() > getComponent("clientList").getRows()
+				}]]></xp:this.rendered>
+			</xp:pager>
+		</xp:this.facets>
+		<xp:viewColumn columnName="Name" displayAs="link" pageUrl="/client.xsp?id=#{client.id}">
+			<xp:viewColumnHeader value="Name"/>
+		</xp:viewColumn>
+	</xp:viewPanel>
+</xp:view>

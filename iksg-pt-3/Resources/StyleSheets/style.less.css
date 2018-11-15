@@ -1,0 +1,23 @@
+.notesView {
+	width: 100%;
+}
+.notesView > tbody > tr:first-child, .notesView > tbody > tr:last-child { display: none }
+
+.widget-box + .widget-box {
+	margin-top: 2em;
+}
+
+.action-bar, .form-actions {
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #E5E5E5;
+	display: block;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.action-bar {
+	margin-top: -12px;
+}
+
+.ace-file-input {
+	margin-top: 0.5em;
+}

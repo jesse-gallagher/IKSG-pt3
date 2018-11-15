@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<div class="widget-box">
+		<xp:div rendered="#{!empty compositeData.title}" styleClass="widget-header #{compositeData.headerStyleClass}">
+			<h3><xp:text value="#{compositeData.title}"/></h3>
+			
+			<xp:div styleClass="widget-toolbar" rendered="#{javascript:compositeData.collapsible == true}">
+				<a href="#" data-action="collapse"><i class="icon-chevron-up"></i></a>
+			</xp:div>
+		</xp:div>
+		<div class="widget-body">
+			<div class="widget-main #{compositeData.bodyStyleClass}">
+				<xp:callback id="boxContent"/>
+			</div>
+		</div>
+	</div>			
+</xp:view>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:ff="http://frostillic.us/framework"
+	beforePageLoad="#{controller.beforePageLoad}" afterPageLoad="#{controller.afterPageLoad}">
+
+	<xp:this.acl>
+		<xp:acl>
+			<xp:this.entries>
+				<xp:aclEntry type="ROLE" right="EDITOR" name="[Staff]" />
+				<xp:aclEntry type="ROLE" right="READER" name="[Client]" />
+			</xp:this.entries>
+		</xp:acl>
+	</xp:this.acl>
+
+	<xp:this.data>
+		<ff:modelObjectData var="task" managerName="Tasks" key="${empty param.id ? 'new' : param.id}" />
+	</xp:this.data>
+	<xp:this.navigationRules>
+		<xp:navigationRule outcome="xsp-success" viewId="${empty sessionScope.lastTaskListPage ? '/tasks.xsp' : sessionScope.lastTaskListPage}" />
+	</xp:this.navigationRules>
+
+	<xc:layout navigationPath="/Tasks/Task" pageTitle="Task" emailSubject="${controller.emailSubject}" emailSendTo="${controller.emailSendTo}"
+		doubleActionBar="true">
+		<xp:this.facets>
+			<xe:breadCrumbs xp:key="BreadCrumbs">
+				<xe:this.treeNodes>
+					<xe:basicLeafNode href="/" imageAlt="icon-home home-icon" label="Home" />
+					<xe:pageTreeNode page="tasks" label="Tasks" loaded="${userInfo.staff}" />
+					<xe:repeatTreeNode value="#{controller.lineage}" var="parentTask">
+						<xe:this.children>
+							<xe:pageTreeNode page="task" label="Task" queryString="id=#{parentTask.id}" />
+						</xe:this.children>
+					</xe:repeatTreeNode>
+					<xe:basicLeafNode label="Task" />
+				</xe:this.treeNodes>
+			</xe:breadCrumbs>
+			<xc:actionBar xp:key="ActionBar">
+				<xc:buttons_modelCommon/>
+
+				<xc:button_newTask loaded="${not controller.readonly and not task.new}" text="New Followup" parentId="${task.id}" />
+				<xc:button_newRequest loaded="${controller.readonly and not task.new}" text="New Followup" parentId="${task.id}" />
+			</xc:actionBar>
+		</xp:this.facets>
+
+		<xc:layoutRow>
+			<xc:layoutColumn tabletCols="8">
+				<xe:widgetContainer titleBarText="Task" styleClass="widget-color-purple">
+					<xe:formTable>
+						<xe:formRow binding="#{controller.components[task].Summary}">
+							<xe:djTextarea/>
+						</xe:formRow>
+						<xe:formRow binding="#{controller.components[task].Type}"/>
+						<xe:formRow binding="#{controller.components[task].Tags}"/>
+						<xe:formRow label="Requester" rendered="#{not empty task.Requester}">
+							<xp:text value="#{task.Requester}">
+								<xp:this.converter>
+									<xp:converter converterId="displayNameConverter" />
+								</xp:this.converter>
+							</xp:text>
+						</xe:formRow>
+						<xe:formRow label="Contacts">
+							<xp:listBox id="Contacts" value="#{task.Contacts}" styleClass="usernames-multi-select form-control" multiple="true" disableValidators="true">
+								<xp:this.attrs>
+									<xp:attr name="data-placeholder" value="Select Contact(s)" />
+								</xp:this.attrs>
+								<xp:selectItems value="#{controller.potentialContacts}" />
+							</xp:listBox>
+						</xe:formRow>
+						<xe:formRow label="Assignee">
+							<xp:div id="assigneeRefresher">
+								<xp:listBox id="Assignee" value="#{task.Assignee}" styleClass="usernames-multi-select form-control" multiple="true" disableValidators="true"
+									showReadonlyAsDisabled="true">
+									<xp:this.attrs>
+										<xp:attr name="data-placeholder" value="Select Assignee(s)" />
+									</xp:this.attrs>
+
+									<xp:selectItems value="#{controller.potentialAssignees}" />
+								</xp:listBox>
+							</xp:div>
+							<xp:div loaded="${not controller.readonly}">
+								<xp:link text="Self">
+									<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="assigneeRefresher" action="#{controller.assignToSelf}" disableValidators="true" />
+								</xp:link>
+								&#160;|&#160;
+								<xp:link text="Clear">
+									<xp:eventHandler event="onclick" submit="true" refreshMode="partial" refreshId="assigneeRefresher" action="#{controller.assignToNone}" disableValidators="true" />
+								</xp:link>
+							</xp:div>
+						</xe:formRow>
+						<xe:formRow binding="#{controller.components[task].timeFrame}"/>
+						<xe:formRow binding="#{controller.components[task].due}"/>
+<!--						<xe:formRow label="Due">-->
+<!--							<xp:inputText value="#{task.Due}" id="Due">-->
+<!--								<xp:this.converter>-->
+<!--									<xp:convertDateTime type="date"></xp:convertDateTime>-->
+<!--								</xp:this.converter>-->
+<!--								<xp:dateTimeHelper id="dtHelper"></xp:dateTimeHelper>-->
+<!--							</xp:inputText>-->
+<!--						</xe:formRow>-->
+<!--						<xe:formRow label="Due">-->
+<!--							<xc:inputDate sourceName="task" fieldName="Due"/>-->
+<!--						</xe:formRow>-->
+						<xe:formRow label="Files">
+							<xc:inputFile sourceName="task" fieldName="Files"/>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+			</xc:layoutColumn>
+
+			<xc:layoutColumn tabletCols="4">
+				<xe:widgetContainer titleBarText="Status" styleClass="widget-color-purple">
+					<xe:formTable labelPosition="above">
+						<xe:formRow binding="#{controller.components[task].Status}"/>
+					</xe:formTable>
+				</xe:widgetContainer>
+
+				<xe:widgetContainer titleBarText="Project Info" styleClass="widget-color-green">
+					<xe:formTable labelPosition="above" id="projectRefresher">
+						<xe:formRow label="Client">
+							<xp:comboBox id="ClientID" value="#{task.ClientID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItems value="${Clients.dropdown_list}" />
+								
+								<xp:this.onchange><![CDATA[
+									XSP.partialRefreshPost("#{id:projectRefresher}", { params: { valmode: 0 } })
+								]]></xp:this.onchange>
+<!--								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="projectRefresher" disableValidators="true"/>-->
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow label="Project" rendered="#{not empty task.ClientID}">
+							<xp:comboBox id="ProjectID" value="#{task.ProjectID}">
+								<xp:selectItem itemLabel="- None -" itemValue="" />
+								<xp:selectItem itemLabel="- New -" itemValue="new"/>
+								<xp:selectItems value="#{task.client.projectDropDownValues}" />
+								
+								<xp:this.onchange><![CDATA[
+									XSP.partialRefreshPost("#{id:projectRefresher}", {})
+								]]></xp:this.onchange>
+<!--								<xp:eventHandler event="onchange" submit="true" refreshMode="partial" refreshId="projectRefresher" disableValidators="true"/>-->
+							</xp:comboBox>
+						</xe:formRow>
+						<xe:formRow label="New Project Name" rendered="#{(not empty task.clientId) and task.projectId == 'new'}">
+							<xp:inputText id="NewProjectName" value="#{controller.newProjectName}"/>
+						</xe:formRow>
+					</xe:formTable>
+				</xe:widgetContainer>
+
+			</xc:layoutColumn>
+		</xc:layoutRow>
+		
+		<xc:layoutRow>
+			<xc:layoutColumn>
+				<xc:inputHTML sourceName="task" fieldName="Body"/>
+			</xc:layoutColumn>
+		</xc:layoutRow>
+	</xc:layout>
+</xp:view>

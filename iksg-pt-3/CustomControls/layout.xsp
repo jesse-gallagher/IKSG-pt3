@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex" xmlns:xc="http://www.ibm.com/xsp/custom" xmlns:debug="http://www.openntf.org/xsp/debugtoolbar">
+
+	<xp:this.resources>
+		<xp:linkResource rel="base" href="${facesContext.externalContext.requestContextPath}/" />
+	</xp:this.resources>
+
+	<xe:keepSessionAlive id="keepSessionAlive1" />
+	<xc:navigationRules />
+	
+	<xe:applicationLayout id="applicationLayout1">
+		<xe:this.configuration>
+			<xe:oneuiApplication legal="false" footer="false" titleBar="#{not empty compositeData.pageTitle}" titleBarName="#{compositeData.pageTitle}" productLogo="/$Icon"
+				productLogoAlt="${appConfig.appName}" productLogoHeight="23" productLogoWidth="23" placeBar="true">
+				<xe:this.bannerUtilityLinks>
+					<xe:basicContainerNode styleClass="light-blue" imageAlt="nav-user-photo" image="#{userInfo.profileImageUrl}">
+						<xe:this.label><![CDATA[<span class="user-info">
+							<small>Welcome,</small>
+							#{shortNames[context.user.name]}
+						</span>
+						]]></xe:this.label>
+						<xe:this.children>
+							<xe:basicLeafNode label="Change Password" href="/?ChangePassword&amp;RedirectTo=${facesContext.externalContext.requestContextPath}" image="lock" />
+							<xe:loginTreeNode image="power-off" />
+						</xe:this.children>
+					</xe:basicContainerNode>
+				</xe:this.bannerUtilityLinks>
+				<xe:this.placeBarActions>
+					<xe:basicLeafNode image="envelope" styleClass="btn btn-sm">
+						<xe:this.href><![CDATA[${javascript:
+							var requestURI = facesContext.getExternalContext().getRequest().getRequestURI()
+							var query = facesContext.getExternalContext().getRequest().getQueryString()
+							var url = "https://somedomain" + requestURI + (query == "" ? "" : ("?" + query))
+							var subject = "Re: " + (compositeData.emailSubject && compositeData.emailSubject != "" ? compositeData.emailSubject : compositeData.pageTitle && compositeData.pageTitle != "" ? compositeData.pageTitle : "Milo entity")
+							var sendTo = compositeData.emailSendTo ? compositeData.emailSendTo : ""
+							return "mailto:" + java.net.URLEncoder.encode(sendTo).replace("+", "%20") + "?subject=" + java.net.URLEncoder.encode(subject).replace("+", "%20") + "&body=" + java.net.URLEncoder.encode(url + "\n")
+						}]]></xe:this.href>
+					</xe:basicLeafNode>
+				</xe:this.placeBarActions>
+			</xe:oneuiApplication>
+		</xe:this.configuration>
+
+		<xe:this.facets>
+			<xe:navigator xp:key="LeftColumn">
+				<xe:this.treeNodes>
+					<xe:pageTreeNode label="Dashboard" image="dashboard" page="dashboard"/>
+					<xe:basicContainerNode label="Tasks" image="tasks" selected="${javascript:/^\/Tasks(\/)?/.test(compositeData.navigationPath)}" loaded="${userInfo.staff}">
+						<xe:this.children>
+<!--							<xe:pageTreeNode label="Active" page="/tasks.xsp" selected="${view.pageName=='/tasks.xsp' or view.pageName=='/task.xsp'}"/>-->
+							<xe:basicLeafNode label="Active" href="/tasks.xsp" selected="${view.pageName=='/tasks.xsp' or view.pageName=='/task.xsp'}"/>
+							<xe:basicLeafNode label="In Progress" href="/tasksByStatus.xsp?status=InProgress" selected="${view.pageName=='/tasksByStatus.xsp' and param.status == 'InProgress'}"/>
+							<xe:basicLeafNode label="On Hold" href="/tasksByStatus.xsp?status=OnHold" selected="${view.pageName=='/tasksByStatus.xsp' and param.status == 'OnHold'}"/>
+							<xe:basicLeafNode label="Closed" href="/tasksByStatus.xsp?status=Closed" selected="${view.pageName=='/tasksByStatus.xsp' and param.status == 'Closed'}"/>
+						</xe:this.children>
+					</xe:basicContainerNode>
+					<xe:pageTreeNode label="Calendar" image="calendar" page="calendar"/>
+					<xe:basicContainerNode label="Projects" image="suitcase" selected="${javascript:/^\/Projects(\/)?/.test(compositeData.navigationPath)}" loaded="${userInfo.staff}">
+						<xe:basicLeafNode label="By Name" image="suitcase" href="/projects.xsp" selected="${view.pageName=='/projects.xsp' or view.pageName=='/project.xsp'}"/>
+						<xe:pageTreeNode label="By Client" image="suitcase" page="projectsByClient"/>
+					</xe:basicContainerNode>
+					<xe:basicLeafNode label="Clients" image="group" href="/clients.xsp" selected="${view.pageName=='/clients.xsp' or view.pageName=='/client.xsp'}" loaded="${userInfo.staff}"/>
+					<xe:basicContainerNode label="Rates/Charges" image="usd">
+						<xp:this.selected><![CDATA[${javascript:
+							/^\/RecurringCharges(\/)?/.test(compositeData.navigationPath) ||
+							/^\/OneTimeCharges(\/)?/.test(compositeData.navigationPath) ||
+							/^\/Rates(\/)?/.test(compositeData.navigationPath)
+						}]]></xp:this.selected>
+						<xe:this.children>
+							<xe:basicLeafNode label="Recurring" href="/recurringCharges.xsp" selected="${view.pageName=='/recurringCharges.xsp' or view.pageName=='/recurringCharge.xsp'}"/>
+							<xe:basicLeafNode label="One-Time" href="/oneTimeCharges.xsp" selected="${view.pageName=='/oneTimeCharges.xsp' or view.pageName=='/oneTimeCharge.xsp'}"/>
+							<xe:basicLeafNode label="Rates" href="/rates.xsp" selected="${view.pageName=='/rates.xsp' or view.pageName=='/rate.xsp'}"/>
+						</xe:this.children>
+					</xe:basicContainerNode>
+					<xe:basicLeafNode label="Notes" image="file" href="/notes.xsp" selected="${view.pageName=='/notes.xsp' or view.pageName=='/note.xsp'}"/>
+					<xe:pageTreeNode label="Requests" image="inbox" page="requests" title="${Requests.openRequestCountDisplay}"/>
+					
+					<xe:basicLeafNode label="&#160;" loaded="${userInfo.client and not empty Clients.myClients}"/>
+					<xe:repeatTreeNode value="${Clients.myClients}" var="myClient" loaded="${userInfo.client}">
+						<xe:this.children>
+							<xe:basicLeafNode label="Client Profile" image="group" href="/client.xsp?id=#{myClient.id}" selected="#{view.pageName=='/client.xsp' and param.id==myClient.id}"/>
+						</xe:this.children>
+					</xe:repeatTreeNode>
+					
+					<xe:basicLeafNode label="&#160;"/>
+					<xe:pageTreeNode label="App Updates" image="arrow-up" page="appUpdates"/>
+					<xe:basicLeafNode label="Open Timer" image="leaf" loaded="${userInfo.staff and not empty appConfig.freshBooksAccount}">
+						<xe:this.onClick><![CDATA[
+							window.open("https://${appConfig.freshBooksAccount}.freshbooks.com/internal.php?route=popupTimer", "_new", "toolbar=no, status=no, menubar=no, location=no, scrollbars=0, resizable=0, height=590, width=250, top=30, left=30")
+						]]></xe:this.onClick>
+					</xe:basicLeafNode>
+					
+					<xe:basicLeafNode label="&#160;" loaded="${userInfo.admin}"/>
+					<xe:pageTreeNode label="App Config" image="cogs" page="appconfig" loaded="${userInfo.admin}"/>
+				</xe:this.treeNodes>
+			</xe:navigator>
+			<xp:callback xp:key="BreadCrumbs" facetName="BreadCrumbs" />
+			<xp:callback xp:key="SearchBar" facetName="SearchBar" />
+		</xe:this.facets>
+
+		<xc:messages />
+
+		<xp:div styleClass="action-bar" rendered="#{javascript:!this.children.isEmpty()}">
+			<xp:callback id="ActionBar" facetName="ActionBar" />
+		</xp:div>
+		
+		<xp:callback />
+		
+		<xp:div styleClass="form-actions" loaded="${javascript:compositeData.doubleActionBar===true}" rendered="#{javascript:!this.children.isEmpty()}">
+			<xp:callback id="ActionBar2" facetName="ActionBar" />
+		</xp:div>
+
+	</xe:applicationLayout>
+
+	<script type="text/javascript"><![CDATA[
+		if("ontouchend" in document) document.write("<script src='/.ibmxspres/.wrapbootstrap-ace/1.1.2.201308061140/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	]]></script>
+
+	<debug:toolbar defaultCollapsed="false" collapseTo="left" loaded="${userInfo.debug}"/>
+</xp:view>

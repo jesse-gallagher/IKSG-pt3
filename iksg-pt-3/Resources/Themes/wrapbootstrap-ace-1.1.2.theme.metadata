@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="85257BBF004BB372" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1186" sequence="123" unid="E5A68E49535A44CD85257BBF00569DE0">
+<created><datetime dst="true">20130806T114605,12-04</datetime></created>
+<modified><datetime>20131124T082309,12-05</datetime></modified>
+<revised><datetime>20131110T161725,08-05</datetime></revised>
+<lastaccessed><datetime>20131124T082309,11-05</datetime></lastaccessed>
+<addedtofile><datetime>20131124T082309,11-05</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jesse Gallagher/O=Frost</name></updatedby>
+<wassignedby><name>CN=Jesse Gallagher/O=Frost</name></wassignedby>
+<item name="$TITLE"><text>wrapbootstrap-ace-1.1.2.theme</text></item>
+<item name="$Flags"><text>34567Cg~`</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>wrapbootstrap-ace-1.1.2.theme</text></item></note>
